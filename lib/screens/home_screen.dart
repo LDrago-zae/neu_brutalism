@@ -13,39 +13,75 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFfff9e4),
+      backgroundColor: const Color(0xFFfff9e4),
       body: Padding(
-        padding: const EdgeInsets.only (top: 35.0, left: 20, right: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        padding: const EdgeInsets.only(top: 35.0, left: 20, right: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Edit' , style: GoogleFonts.inter(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFF51AEB5),
-            ),),
-            const SizedBox(height: 20),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                NeuIconButton(
-                  buttonWidth: 50,
-                  buttonColor: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  icon: const Icon(Icons.camera_alt_outlined),
-                  //onPressed: () => print("hii"),
-                  enableAnimation: false,
+                Text(
+                  'Edit',
+                  style: GoogleFonts.inter(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xFF51AEB5),
+                  ),
                 ),
-                SizedBox(width: 10,),
-                NeuIconButton(
-                  buttonWidth: 50,
-                  buttonColor: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  icon: const Icon(Icons.chat_outlined),
-                  //onPressed: () => print("hii"),
-                  enableAnimation: false,
+                Row(
+                  children: [
+                    NeuIconButton(
+                      buttonWidth: 50,
+                      buttonColor: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      icon: const Icon(Icons.camera_alt_outlined),
+                      //onPressed: () => print("hii"),
+                      enableAnimation: false,
+                    ),
+                    const SizedBox(width: 10),
+                    NeuIconButton(
+                      buttonWidth: 50,
+                      buttonColor: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      icon: const Icon(Icons.chat_outlined),
+                      //onPressed: () => print("hii"),
+                      enableAnimation: false,
+                    ),
+                  ],
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Chats',
+              style: GoogleFonts.inter(
+                fontSize: 35,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 25),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Messages',
+                  style: GoogleFonts.inter(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xFF51AEB5),
+                  ),
+                ),
+                Text('New Group' ,
+                  style: GoogleFonts.inter(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                    color: const Color(0xFF51AEB5),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
