@@ -34,7 +34,7 @@ class ChatTile extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(12.0), // Add padding inside the container
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Profile image
                 ClipRRect(
@@ -46,9 +46,9 @@ class ChatTile extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
 
-                // Flexible content column
+                // Chat content
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +60,7 @@ class ChatTile extends StatelessWidget {
                           Expanded(
                             child: Text(
                               name,
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(fontWeight: FontWeight.bold),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -73,7 +73,7 @@ class ChatTile extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
 
                       // Message row
                       Row(
@@ -83,11 +83,11 @@ class ChatTile extends StatelessWidget {
                             size: 16,
                             color: isRead ? Colors.blue : Colors.grey,
                           ),
-                          SizedBox(width: 4),
+                          const SizedBox(width: 4),
                           Expanded(
                             child: Text(
                               message,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.black87,
                               ),
@@ -100,9 +100,12 @@ class ChatTile extends StatelessWidget {
                   ),
                 ),
 
-                // Trailing arrow
-                SizedBox(width: 8),
-                Center(child: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey)),
+                // Arrow aligned vertically center
+                const SizedBox(width: 12),
+                Align(
+                  alignment: Alignment.center,
+                  child: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                ),
               ],
             ),
           ),

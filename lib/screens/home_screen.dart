@@ -15,103 +15,98 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFfff9e4),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 40.0, left: 20, right: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Top Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Edit',
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFF51AEB5),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Top Row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Edit',
+                    style: GoogleFonts.inter(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF51AEB5),
+                    ),
                   ),
-                ),
-                Row(
-                  children: [
-                    NeuIconButton(
-                      offset: Offset(0,3),
-                      buttonWidth: 50,
-                      buttonColor: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      icon: const Icon(Icons.camera_alt_outlined),
-                      enableAnimation: false,
-                    ),
-                    const SizedBox(width: 10),
-                    NeuIconButton(
-                      offset: Offset(0,3),
-                      buttonWidth: 50,
-                      buttonColor: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      icon: const Icon(Icons.chat_outlined),
-                      enableAnimation: false,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-
-            // Chats Title
-            Text(
-              'Chats',
-              style: GoogleFonts.inter(
-                fontSize: 35,
-                fontWeight: FontWeight.w700,
+                  Row(
+                    children: [
+                      NeuIconButton(
+                        offset: const Offset(0, 3),
+                        buttonWidth: 50,
+                        buttonColor: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        icon: const Icon(Icons.camera_alt_outlined),
+                        enableAnimation: false,
+                      ),
+                      const SizedBox(width: 10),
+                      NeuIconButton(
+                        offset: const Offset(0, 3),
+                        buttonWidth: 50,
+                        buttonColor: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        icon: const Icon(Icons.chat_outlined),
+                        enableAnimation: false,
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 25),
+              const SizedBox(height: 20),
 
-            // Messages and New Group
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Messages',
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFF51AEB5),
-                  ),
+              // Chats Title
+              Text(
+                'Chats',
+                style: GoogleFonts.inter(
+                  fontSize: 35,
+                  fontWeight: FontWeight.w700,
                 ),
-                Text(
-                  'New Group',
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFF51AEB5),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
+              ),
+              const SizedBox(height: 25),
 
-            // List of ChatTiles
-            Expanded(
-              child: ListView.separated(
-                itemCount: 10,
-                // Replace with actual list length if dynamic
-                itemBuilder: (context, index) {
-                  return ChatTile(
+              // Messages and New Group
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Messages',
+                    style: GoogleFonts.inter(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF51AEB5),
+                    ),
+                  ),
+                  Text(
+                    'New Group',
+                    style: GoogleFonts.inter(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF51AEB5),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+
+              // Chat tiles (simulating dynamic list)
+              ...List.generate(10, (index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: ChatTile(
                     imagePath: 'assets/icons/spicon.png',
-                    name: 'Alex',
+                    name: 'Alex $index',
                     message: 'This is a sample message from contact',
-                    date: '12:00 PM',
-                    isRead: true,
-                  );
-                },
-                separatorBuilder: (context, index) =>
-                    const SizedBox(height: 16),
-                padding: const EdgeInsets.only(bottom: 20,)
-
-              ),
-            ),
-          ],
+                    date: '12:${index}0 PM',
+                    isRead: index % 2 == 0,
+                  ),
+                );
+              }),
+            ],
+          ),
         ),
       ),
     );
