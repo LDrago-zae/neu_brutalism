@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFfff9e4),
       body: Padding(
-        padding: const EdgeInsets.only(top: 35.0, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 40.0, left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   'Edit',
                   style: GoogleFonts.inter(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFF51AEB5),
                   ),
@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   'Messages',
                   style: GoogleFonts.inter(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFF51AEB5),
                   ),
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   'New Group',
                   style: GoogleFonts.inter(
-                    fontSize: 22,
+                    fontSize: 20,
                     fontWeight: FontWeight.w600,
                     color: const Color(0xFF51AEB5),
                   ),
@@ -107,6 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 separatorBuilder: (context, index) =>
                     const SizedBox(height: 16),
+                padding: const EdgeInsets.only(bottom: 20,)
+
               ),
             ),
           ],
