@@ -3,13 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neu_brutalism/components/chat_tile.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
+import '../models/chat_model.dart';
+import '../repository/chat_data.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-
+final List<ChatModel> chatList = ChatData.getChats();
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -93,18 +96,18 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 20),
 
               // Chat tiles (simulating dynamic list)
-              ...List.generate(10, (index) {
+              ...chatList.map((chat) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
                   child: ChatTile(
-                    imagePath: 'assets/icons/spicon.png',
-                    name: 'Alex $index',
-                    message: 'This is a sample message from contact',
-                    date: '12:${index}0 PM',
-                    isRead: index % 2 == 0,
+                    imagePath: chat.imagePath,
+                    name: chat.name,
+                    message: chat.message,
+                    date: chat.date,
+                    isRead: chat.isRead,
                   ),
                 );
-              }),
+              }).toList(),
             ],
           ),
         ),
