@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
+import 'chat_screen.dart';
+
 class ChatTile extends StatelessWidget {
   final String name;
   final String message;
@@ -22,9 +24,12 @@ class ChatTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ChatScreen(name: name, userProfileImage: imagePath)),
+      ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 0, right: 0,),
+        padding: const EdgeInsets.only(left: 0, right: 0),
         child: NeuContainer(
           borderRadius: BorderRadius.circular(5),
           width: double.infinity,
@@ -32,7 +37,8 @@ class ChatTile extends StatelessWidget {
           borderWidth: 2,
           // borderRadius: BorderRadius.circular(12),
           child: Padding(
-            padding: const EdgeInsets.all(12.0), // Add padding inside the container
+            padding: const EdgeInsets.all(12.0),
+            // Add padding inside the container
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -60,7 +66,9 @@ class ChatTile extends StatelessWidget {
                           Expanded(
                             child: Text(
                               name,
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -104,7 +112,11 @@ class ChatTile extends StatelessWidget {
                 const SizedBox(width: 12),
                 Align(
                   alignment: Alignment.center,
-                  child: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Colors.grey,
+                  ),
                 ),
               ],
             ),

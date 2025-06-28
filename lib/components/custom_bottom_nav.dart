@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NeuNav extends StatefulWidget {
   const NeuNav({super.key});
@@ -38,14 +37,14 @@ class _NeuNavState extends State<NeuNav> {
             filledIcon: Icons.chat,
             label: 'Chats',
             isSelected: selectedIndex == 0,
-            onTap: () => onItemTapped(1),
+            onTap: () => onItemTapped(0),
           ),
           _NavIcon(
             icon: Icons.timelapse_outlined,
             filledIcon: Icons.timelapse,
             label: 'Status',
             isSelected: selectedIndex == 1,
-            onTap: () => onItemTapped(0),
+            onTap: () => onItemTapped(1),
           ),
           _NavIcon(
             icon: Icons.group_outlined,

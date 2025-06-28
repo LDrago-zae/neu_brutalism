@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     isRead: chat.isRead,
                   ),
                 );
-              }).toList(),
+              }),
             ],
           ),
         ),
