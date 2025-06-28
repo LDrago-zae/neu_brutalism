@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neu_brutalism/components/chat_tile.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
+import '../components/custom_bottom_nav.dart';
 import '../models/chat_model.dart';
 import '../repository/chat_data.dart';
 
@@ -112,6 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: const NeuNav(),
     );
   }
 }
