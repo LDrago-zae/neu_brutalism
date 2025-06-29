@@ -1,55 +1,60 @@
-// lib/components/neu_brutal_profile_card.dart
 import 'package:flutter/material.dart';
-import '../models/character_profile_model.dart'; // Adjust path if needed
+import '../models/character_profile_model.dart';
 
 class NeuBrutalProfileCard extends StatelessWidget {
   final CharacterProfile profile;
 
   const NeuBrutalProfileCard({super.key, required this.profile});
 
-  // --- Style Constants ---
-  static const Color cardBackgroundColor = Color(0xFFFFF9E4); // Creamy off-white
-  static const Color primaryAccentColor = Color(0xFFCEEE30); // Hades lime green (example)
+  // Style Constants
+  static const Color cardBackgroundColor = Color(0xFFFFF9E4);
+  static const Color primaryAccentColor = Color(0xFFCEEE30);
   static const Color borderColor = Colors.black;
   static const double borderWidth = 3.5;
   static const Color shadowColor = Colors.black;
-  static const Offset shadowOffset = Offset(5, 5); // Prominent shadow
+  static const Offset shadowOffset = Offset(5, 5);
 
   @override
   Widget build(BuildContext context) {
-    return Dialog( // Or use as a direct widget in a Scaffold
-      backgroundColor: Colors.transparent, // Make dialog background transparent
+    return Dialog(
+      backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.all(20),
       child: Container(
-        padding: const EdgeInsets.all(3), // Padding for the "double border" effect
+        padding: const EdgeInsets.all(3),
         decoration: BoxDecoration(
-          color: borderColor, // Outer border color
+          color: borderColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [
             BoxShadow(
               color: shadowColor,
               offset: shadowOffset,
-              blurRadius: 0, // Hard shadow
+              blurRadius: 0,
             )
           ],
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(7), // Inner content slightly rounded
-          child: Container(// Adjust height as needed
-            width: MediaQuery.of(context).size.width * 0.78, // Adjust width as needed
+          borderRadius: BorderRadius.circular(7),
+          child: Container(
+            constraints: BoxConstraints(
+              minHeight: 300,
+              maxHeight: MediaQuery.of(context).size.height * 0.85,
+            ),
+            width: MediaQuery.of(context).size.width * 0.85,
             decoration: BoxDecoration(
               color: cardBackgroundColor,
-              border: Border.all(color: borderColor, width: borderWidth / 2), // Inner border
+              border: Border.all(color: borderColor, width: borderWidth / 2),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min, // Important for Dialogs
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _buildHeader(),
-                _buildBannerImage(),
-                _buildAvatarAndTitleSection(),
-                _buildDetailsSection(),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _buildHeader(),
+                  _buildBannerImage(),
+                  _buildAvatarAndTitleSection(),
+                  _buildDetailsSection(),
+                ],
+              ),
             ),
           ),
         ),
@@ -61,7 +66,7 @@ class NeuBrutalProfileCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: const BoxDecoration(
-        color: cardBackgroundColor, // Or primaryAccentColor for a bolder header
+        color: cardBackgroundColor,
         border: Border(bottom: BorderSide(color: borderColor, width: borderWidth)),
       ),
       child: Row(
@@ -71,7 +76,7 @@ class NeuBrutalProfileCard extends StatelessWidget {
             profile.name.toUpperCase(),
             style: const TextStyle(
               fontSize: 26,
-              fontWeight: FontWeight.w900, // Extra bold
+              fontWeight: FontWeight.w900,
               color: borderColor,
               letterSpacing: 1.5,
             ),
@@ -84,20 +89,13 @@ class NeuBrutalProfileCard extends StatelessWidget {
 
   Widget _buildBannerImage() {
     return Container(
-      height: 150, // Adjust height as needed
+      height: 150,
       decoration: BoxDecoration(
         border: const Border(bottom: BorderSide(color: borderColor, width: borderWidth)),
         image: DecorationImage(
           image: AssetImage(profile.bannerImagePath),
           fit: BoxFit.cover,
-          // Add a color filter for a more stylized look if desired
           colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.darken),
-        ),
-      ),
-      // If you want a slight inner shadow or border on the image itself:
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withOpacity(0.5), width: 1),
         ),
       ),
     );
@@ -107,7 +105,7 @@ class NeuBrutalProfileCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: const BoxDecoration(
-        color: cardBackgroundColor, // Match card background
+        color: cardBackgroundColor,
         border: Border(bottom: BorderSide(color: borderColor, width: borderWidth)),
       ),
       child: Column(
@@ -115,7 +113,6 @@ class NeuBrutalProfileCard extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              // Divider Line behind avatar
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Container(
@@ -128,20 +125,22 @@ class NeuBrutalProfileCard extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(color: borderColor, width: borderWidth),
                   boxShadow: const [
-                    BoxShadow( // Shadow for the avatar itself for pop
+                    BoxShadow(
                       color: shadowColor,
-                      offset: Offset(3,3),
+                      offset: Offset(3, 3),
                       blurRadius: 0,
                     )
                   ],
                 ),
                 child: CircleAvatar(
                   radius: 50,
-                  backgroundColor: cardBackgroundColor, // To hide line behind image
+                  backgroundColor: cardBackgroundColor,
                   child: CircleAvatar(
-                    radius: 48, // Slightly smaller for border effect
+                    radius: 48,
                     backgroundImage: AssetImage(profile.avatarImagePath),
-                    onBackgroundImageError: (e,s) { /* Handle error */ },
+                    onBackgroundImageError: (e, s) {
+                      // Handle error
+                    },
                   ),
                 ),
               ),
@@ -190,18 +189,18 @@ class NeuBrutalProfileCard extends StatelessWidget {
   Widget _buildDetailItem(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
-      child: Column( // Use Column to stack label and value if value is long
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "$label:",
             style: const TextStyle(
               fontSize: 15,
-              fontWeight: FontWeight.w800, // Bold label
+              fontWeight: FontWeight.w800,
               color: borderColor,
             ),
           ),
-          const SizedBox(width: 4, height: 2), // For spacing
+          const SizedBox(height: 2),
           Text(
             value,
             style: TextStyle(
