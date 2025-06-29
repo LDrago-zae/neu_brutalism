@@ -11,14 +11,25 @@ Widget buildInputBar() {
       children: [
         const Icon(Icons.add, size: 26),
         const SizedBox(width: 8),
-        const Expanded(
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: "Type a message",
-              border: InputBorder.none,
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(30),
+              border: Border.all(color: Colors.black, width: 1.5),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: const TextField(
+                decoration: InputDecoration(
+                  hintText: "Type a message",
+                  border: InputBorder.none,
+                ),
+              ),
             ),
           ),
         ),
+        const SizedBox(width: 8),
         const Icon(Icons.emoji_emotions_outlined),
         const SizedBox(width: 8),
         const Icon(Icons.camera_alt_outlined),

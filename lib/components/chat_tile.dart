@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
+import 'chat_message.dart';
 import 'chat_screen.dart';
 
 class ChatTile extends StatelessWidget {
@@ -24,10 +25,18 @@ class ChatTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ChatScreen(name: name, userProfileImage: imagePath)),
-      ),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChatScreen(
+              name: name,
+              userProfileImage: imagePath,
+              messages: messagesMap[name] ?? [],
+            ),
+          ),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.only(left: 0, right: 0),
         child: NeuContainer(
