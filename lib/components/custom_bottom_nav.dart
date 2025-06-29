@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neu_brutalism/components/settings_screen.dart';
 
 class NeuNav extends StatefulWidget {
   const NeuNav({super.key});
@@ -65,7 +66,13 @@ class _NeuNavState extends State<NeuNav> {
             filledIcon: Icons.settings,
             label: 'Settings',
             isSelected: selectedIndex == 4,
-            onTap: () => onItemTapped(4),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SettingsScreen()),
+              );
+              onItemTapped(0); // Reset to Chats after navigating
+            },
           ),
         ],
       ),
