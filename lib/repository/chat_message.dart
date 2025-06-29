@@ -41,15 +41,15 @@ Map<String, List<MessageModel>> messagesMap = {
   ],
 
   "Hypnos": [
-    MessageModel(message: "Oh hey! Another death, huh?", time: "12:30 PM", isMe: false, profileImage: 'assets/icons/hyp.web'),
+    MessageModel(message: "Oh hey! Another death, huh?", time: "12:30 PM", isMe: false, profileImage: 'assets/icons/hyp.webp'),
     MessageModel(message: "Not helping, Hypnos...", time: "12:31 PM", isMe: true),
     MessageModel(message: "😅 Sorry! Next time dodge better!", time: "12:32 PM", isMe: false, profileImage: 'assets/icons/hyp.webp'),
     MessageModel(message: "I know... I know...", time: "12:33 PM", isMe: true),
-    MessageModel(message: "You almost made it past Elysium though!", time: "12:34 PM", isMe: false, profileImage: 'assets/icons/hyp.web'),
+    MessageModel(message: "You almost made it past Elysium though!", time: "12:34 PM", isMe: false, profileImage: 'assets/icons/hyp.webp'),
     MessageModel(message: "Not exactly helpful commentary.", time: "12:35 PM", isMe: true),
-    MessageModel(message: "Hey, I'm rooting for you! 😇", time: "12:36 PM", isMe: false, profileImage: 'assets/icons/hyp.web'),
+    MessageModel(message: "Hey, I'm rooting for you! 😇", time: "12:36 PM", isMe: false, profileImage: 'assets/icons/hyp.webp'),
     MessageModel(message: "Sure you are...", time: "12:37 PM", isMe: true),
-    MessageModel(message: "Good luck next time! You'll need it!", time: "12:38 PM", isMe: false, profileImage: 'assets/icons/hyp.web'),
+    MessageModel(message: "Good luck next time! You'll need it!", time: "12:38 PM", isMe: false, profileImage: 'assets/icons/hyp.webp'),
     MessageModel(message: "Thanks... I guess.", time: "12:39 PM", isMe: true),
   ],
 
