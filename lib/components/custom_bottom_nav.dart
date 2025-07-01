@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:neu_brutalism/components/settings_screen.dart';
+import 'package:neu_brutalism/screens/settings_screen.dart';
 
-class NeuNav extends StatefulWidget {
-  const NeuNav({super.key});
+class NeuNav extends StatelessWidget {
+  final int selectedIndex;
+  final ValueChanged<int> onItemTapped;
 
-  @override
-  State<NeuNav> createState() => _NeuNavState();
-}
-
-class _NeuNavState extends State<NeuNav> {
-  int selectedIndex = 0;
-
-  void onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
+  const NeuNav({
+    super.key,
+    required this.selectedIndex,
+    required this.onItemTapped,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.095,
-      width: MediaQuery.of(context).size.width * 0.9,
+      width: MediaQuery.of(context).size.width * 0.95,
       decoration: BoxDecoration(
         color: const Color(0xffCEEE30),
         borderRadius: const BorderRadius.only(
@@ -33,82 +27,32 @@ class _NeuNavState extends State<NeuNav> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _NavIcon(
-            icon: Icons.chat_bubble_outline,
-            filledIcon: Icons.chat,
-            label: 'Chats',
-            isSelected: selectedIndex == 0,
-            onTap: () => onItemTapped(0),
-          ),
-          _NavIcon(
-            icon: Icons.timelapse_outlined,
-            filledIcon: Icons.timelapse,
-            label: 'Status',
-            isSelected: selectedIndex == 1,
-            onTap: () => onItemTapped(1),
-          ),
-          _NavIcon(
-            icon: Icons.group_outlined,
-            filledIcon: Icons.group,
-            label: 'Community',
-            isSelected: selectedIndex == 2,
-            onTap: () => onItemTapped(2),
-          ),
-          _NavIcon(
-            icon: Icons.call_outlined,
-            filledIcon: Icons.call,
-            label: 'Calls',
-            isSelected: selectedIndex == 3,
-            onTap: () => onItemTapped(3),
-          ),
-          _NavIcon(
-            icon: Icons.settings_outlined,
-            filledIcon: Icons.settings,
-            label: 'Settings',
-            isSelected: selectedIndex == 4,
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SettingsScreen()),
-              );
-              onItemTapped(0); // Reset to Chats after navigating
-            },
-          ),
+          _buildIcon(context, 0, Icons.chat_bubble_outline, Icons.chat, 'Chats'),
+          _buildIcon(context, 1, Icons.timelapse_outlined, Icons.timelapse, 'Status'),
+          _buildIcon(context, 2, Icons.group_outlined, Icons.group, 'Community'),
+          _buildIcon(context, 3, Icons.call_outlined, Icons.call, 'Calls'),
+          _buildIcon(context, 4, Icons.settings_outlined, Icons.settings, 'Settings'),
         ],
       ),
     );
   }
-}
 
-class _NavIcon extends StatelessWidget {
-  final IconData icon;
-  final IconData filledIcon;
-  final String label;
-  final bool isSelected;
-  final VoidCallback onTap;
+  Widget _buildIcon(BuildContext context, int index, IconData icon, IconData filledIcon, String label) {
+    final isSelected = index == selectedIndex;
 
-  const _NavIcon({
-    required this.icon,
-    required this.filledIcon,
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => onItemTapped(index),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
             decoration: isSelected
                 ? BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.black, width: 2),
-                  )
+              color: Colors.white,
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.black, width: 2),
+            )
                 : null,
             padding: const EdgeInsets.all(8),
             child: Icon(

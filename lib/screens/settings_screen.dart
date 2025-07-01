@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neu_brutalism/components/settings_tile.dart';
 import '../controllers/settings_controller.dart';
-import 'custom_bottom_nav.dart';
+import '../components/custom_bottom_nav.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -52,7 +52,12 @@ class SettingsScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const NeuNav(),
+      // bottomNavigationBar: NeuNav(
+      //   selectedIndex: 4, // Settings is the last item
+      //   onItemTapped: (index) {
+      //
+      //   },
+      // ),
     );
   }
 }

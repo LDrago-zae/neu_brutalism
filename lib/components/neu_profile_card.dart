@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import '../models/character_profile_model.dart';
 
-class NeuBrutalProfileCard extends StatelessWidget {
+class NeuBrutalProfileCard extends StatefulWidget {
   final CharacterProfile profile;
 
   const NeuBrutalProfileCard({super.key, required this.profile});
 
-  // Style Constants
+  @override
+  State<NeuBrutalProfileCard> createState() => _NeuBrutalProfileCardState();
+}
+
+class _NeuBrutalProfileCardState extends State<NeuBrutalProfileCard> {
+  bool showDetails = false;
+
+  // Constants
   static const Color cardBackgroundColor = Color(0xFFFFF9E4);
   static const Color primaryAccentColor = Color(0xFFCEEE30);
   static const Color borderColor = Colors.black;
@@ -16,6 +23,8 @@ class NeuBrutalProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profile = widget.profile;
+
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.all(20),
@@ -49,10 +58,16 @@ class NeuBrutalProfileCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  _buildHeader(),
-                  _buildBannerImage(),
-                  _buildAvatarAndTitleSection(),
-                  _buildDetailsSection(),
+                  _buildHeader(profile),
+                  _buildBannerImage(profile),
+                  _buildAvatarAndTitleSection(profile),
+                  _buildToggleArrow(),
+                  AnimatedCrossFade(
+                    firstChild: const SizedBox.shrink(),
+                    secondChild: _buildDetailsSection(profile),
+                    crossFadeState: showDetails ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                    duration: const Duration(milliseconds: 300),
+                  ),
                 ],
               ),
             ),
@@ -62,7 +77,7 @@ class NeuBrutalProfileCard extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(CharacterProfile profile) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: const BoxDecoration(
@@ -70,24 +85,26 @@ class NeuBrutalProfileCard extends StatelessWidget {
         border: Border(bottom: BorderSide(color: borderColor, width: borderWidth)),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            profile.name.toUpperCase(),
-            style: const TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w900,
-              color: borderColor,
-              letterSpacing: 1.5,
+          Center(
+            child: Text(
+              profile.name.toUpperCase(),
+              style: const TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.w900,
+                color: borderColor,
+                letterSpacing: 1.5,
+              ),
             ),
           ),
-          const Icon(Icons.arrow_drop_down, color: borderColor, size: 30),
+          // const Icon(Icons.close, color: borderColor, size: 28),
         ],
       ),
     );
   }
 
-  Widget _buildBannerImage() {
+  Widget _buildBannerImage(CharacterProfile profile) {
     return Container(
       height: 150,
       decoration: BoxDecoration(
@@ -101,7 +118,7 @@ class NeuBrutalProfileCard extends StatelessWidget {
     );
   }
 
-  Widget _buildAvatarAndTitleSection() {
+  Widget _buildAvatarAndTitleSection(CharacterProfile profile) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       decoration: const BoxDecoration(
@@ -138,9 +155,7 @@ class NeuBrutalProfileCard extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 48,
                     backgroundImage: AssetImage(profile.avatarImagePath),
-                    onBackgroundImageError: (e, s) {
-                      // Handle error
-                    },
+                    onBackgroundImageError: (e, s) {},
                   ),
                 ),
               ),
@@ -171,9 +186,33 @@ class NeuBrutalProfileCard extends StatelessWidget {
     );
   }
 
-  Widget _buildDetailsSection() {
+  Widget _buildToggleArrow() {
+    return InkWell(
+      onTap: () {
+        setState(() => showDetails = !showDetails);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(
+          color: cardBackgroundColor,
+          border: Border(bottom: BorderSide(color: borderColor, width: borderWidth)),
+        ),
+        child: Icon(
+          showDetails ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+          size: 30,
+          color: borderColor,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDetailsSection(CharacterProfile profile) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 20),
+      decoration: const BoxDecoration(
+        color: cardBackgroundColor,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

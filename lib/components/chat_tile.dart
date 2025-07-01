@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 import '../repository/chat_message.dart';
-import 'chat_screen.dart';
+import '../screens/chat_screen.dart';
 
 class ChatTile extends StatelessWidget {
   final String name;

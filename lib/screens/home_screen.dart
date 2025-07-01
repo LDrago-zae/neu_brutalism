@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neu_brutalism/components/chat_tile.dart';
+import 'package:neu_brutalism/screens/settings_screen.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 import '../components/custom_bottom_nav.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 final List<ChatModel> chatList = ChatData.getChats();
 class _HomeScreenState extends State<HomeScreen> {
+  late int selectedIndex = 0; // Default selected index for bottom navigation
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +115,21 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: const NeuNav(),
+      // bottomNavigationBar: NeuNav(
+      //   selectedIndex: selectedIndex,
+      //   onItemTapped: (index) async {
+      //     if (index == 4) {
+      //       setState(() => selectedIndex = 4);
+      //       final result = await Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (context) => const SettingsScreen()),
+      //       );
+      //       setState(() => selectedIndex = result ?? 0);
+      //     } else {
+      //       setState(() => selectedIndex = index);
+      //     }
+      //   },
+      // )
     );
   }
 }

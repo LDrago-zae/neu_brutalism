@@ -3,7 +3,7 @@ import '../models/message_model.dart';
 import '../components/chat_bubble.dart';
 import '../components/msg_input_bar.dart';
 import '../repository/character_data.dart';
-import 'neu_profile_card.dart'; // Adjust path if needed
+import '../components/neu_profile_card.dart'; // Adjust path if needed
 
 class ChatScreen extends StatefulWidget {
   final String name;
